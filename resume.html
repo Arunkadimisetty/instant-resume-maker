@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid #0056b3;
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        h2 {
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+        .contact-info p {
+            margin: 6px 0;
+            font-size: 1rem;
+        }
+        ul {
+            margin-top: 6px;
+            padding-left: 20px;
+        }
+        ul li {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        #image-section {
+            text-align: center;
+            margin-bottom: 20px;
+            border: 4px solid #7d90a5;
+            border-radius: 50%;
+            padding: 10px;
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #profile-image {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+            border: 2px solid #0056b3;
+        }
+        .section {
+            margin-bottom: 20px;
+            border: 1px solid #0056b3;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .section h2 {
+            font-size: 1.5rem;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #0056b3, #003366);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #003366, #0056b3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.25rem;
+            }
+            .contact-info p {
+                font-size: 0.9rem;
+            }
+            ul li {
+                font-size: 0.9rem;
+            }
+            #image-section {
+                width: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+                margin: 5px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            h2 {
+                font-size: 1.1rem;
+            }
+            .contact-info p {
+                font-size: 0.8rem;
+            }
+            ul li {
+                font-size: 0.8rem;
+            }
+            #image-section {
+                width: 100px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Generated Resume</h1>
+
+        <!-- Image Section (Centered) -->
+        <div id="image-section">
+            <img id="profile-image" src="" alt="Profile Image">
+        </div>
+
+        <!-- Contact Info Section -->
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p id="name"></p>
+            <p id="email"></p>
+            <p id="phone"></p>
+            <p id="linkedin"></p>
+            <p id="github"></p>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="section">
+            <h2>Skills</h2>
+            <ul id="skills"></ul>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="section">
+            <h2>Projects</h2>
+            <ul id="projects"></ul>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="section">
+            <h2>Experience</h2>
+            <ul id="experience"></ul>
+        </div>
+
+        <!-- Education Section -->
+        <div class="section">
+            <h2>Education</h2>
+            <ul id="education"></ul>
+        </div>
+
+        <!-- Certifications Section -->
+        <div class="section">
+            <h2>Certifications</h2>
+            <ul id="certifications"></ul>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="section">
+            <h2>Achievements</h2>
+            <ul id="achievements"></ul>
+        </div>
+
+        <!-- Interests Section -->
+        <div class="section">
+            <h2>Interests</h2>
+            <ul id="interests"></ul>
+        </div>
+
+        <!-- Go Back Button -->
+        <button onclick="window.location.href = 'index.html';">Go Back to Form</button>
+    </div>
+
+    <script>
+        // Retrieve resume data from localStorage
+        const resumeData = JSON.parse(localStorage.getItem('resumeData'));
+
+        if (resumeData) {
+            // Display image
+            if (resumeData.image) {
+                document.getElementById('profile-image').src = resumeData.image;
+            }
+
+            // Display text data
+            document.getElementById('name').textContent = `Name: ${resumeData.name}`;
+            document.getElementById('email').textContent = `Email: ${resumeData.email}`;
+            document.getElementById('phone').textContent = `Phone: ${resumeData.phone}`;
+            document.getElementById('linkedin').textContent = `LinkedIn: ${resumeData.linkedin}`;
+            document.getElementById('github').textContent = `GitHub: ${resumeData.github}`;
+
+            // Function to display list items
+            function displayList(data, elementId) {
+                const dataArray = data.split(',');
+                const listElement = document.getElementById(elementId);
+                dataArray.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = item.trim();
+                    listElement.appendChild(listItem);
+                });
+            }
+
+            // Display skills, projects, experience, education, certifications, achievements, and interests
+            displayList(resumeData.skills, 'skills');
+            displayList(resumeData.projects, 'projects');
+            displayList(resumeData.experience, 'experience');
+            displayList(resumeData.education, 'education');
+            displayList(resumeData.certifications, 'certifications');
+            displayList(resumeData.achievements, 'achievements');
+            displayList(resumeData.interests, 'interests');
+        } else {
+            // alert("No resume data found!");
+        }
+    </script>
+</body>
+</html>
